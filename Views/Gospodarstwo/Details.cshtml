@@ -1,0 +1,72 @@
+﻿@model AgroControl.Models.Gospodarstwo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detale</h1>
+
+<div>
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col">
+                <h4>Informacje o gospodarstwie</h4>
+            </div>
+            <div class="col d-flex flex-row-reverse">
+                <a asp-controller="ObiektGospodarczy" asp-action="Create"
+                   class="nav-item ac-link-dark font-weight-bolder text-">
+                    <span class="oi oi-plus ac-icon-primary align-text-top"></span>
+                    Dodaj obiekt gospodarczy
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nazwa)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nazwa)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Wlasciciel)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Wlasciciel)
+        </dd>
+    </dl>
+    @if (Model.ObiektyGospodarcze != null)
+    {
+    <div class="container">
+        <div class="row justify-content-center">
+            @foreach (var obiektGospodarczy in Model.ObiektyGospodarcze)
+            {
+                <div class="card col-11 col-xs-11 col-sm-5 col-lg-3 m-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Obiekt: @Html.DisplayFor(og => obiektGospodarczy.Nazwa)</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        <p class="card-text">Opis obiektu gospodarczego </p>
+                        <div class="row justify-content-between p-1">
+                            <span class="oi oi-cog ac-icon-primary px-2 pb-1"
+                                  data-toggle="tooltip" data-placement="top" title="Edytuj obiekt">
+                            </span>
+                            <span class="oi oi-calendar ac-icon-primary px-2 pb-1"
+                                  data-toggle="tooltip" data-placement="top"  title="Dodaj zdarzenie">
+                            </span>
+                            <span class="oi oi-trash ac-icon-primary px-2 pb-1" 
+                                  data-toggle="tooltip" data-placement="top"  title="Usuń obiekt">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edycja</a> |
+    <a asp-action="Delete" asp-route-id="@Model.ID">Usuń</a> |
+    <a asp-controller="Home" asp-action="Index">Powrót do strony głównej</a>
+</div>

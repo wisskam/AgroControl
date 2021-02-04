@@ -1,0 +1,15 @@
+﻿@model IEnumerable<AgroControl.Models.Gospodarstwo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Gospodarstwo</h1>
+
+@if (Model.Count() == 0)
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
