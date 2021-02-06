@@ -28,7 +28,8 @@ namespace AgroControl
             services.AddControllersWithViews();
 
             services.AddDbContext<GospodarstwoContext>(options =>
-                    options.UseNpgsql(Configuration.GetConnectionString("PSQLContext")));
+                    options.UseLazyLoadingProxies()
+                           .UseNpgsql(Configuration.GetConnectionString("PSQLContext")));
 
         }
 

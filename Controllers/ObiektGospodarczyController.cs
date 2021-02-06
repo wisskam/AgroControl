@@ -78,11 +78,21 @@ namespace AgroControl.Controllers
         //    }
         //}
 
-        //// GET: ObiektGospodarczyController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+        // GET: ObiektGospodarczyController/Delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            var obiektGospodarczy = await _context.ObiektyGospodarcze
+                .FirstOrDefaultAsync(og => og.ID == id);
+            if (obiektGospodarczy == null)
+            {
+                return NotFound();
+            }
+
+            _context.ObiektyGospodarcze.Remove(obiektGospodarczy);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Gospodarstwo");
+        }
 
         //// POST: ObiektGospodarczyController/Delete/5
         //[HttpPost]

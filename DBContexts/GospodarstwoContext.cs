@@ -10,21 +10,15 @@ namespace AgroControl.DBContexts
         public DbSet<ObiektGospodarczy> ObiektyGospodarcze { get; set; }
 
         public GospodarstwoContext(DbContextOptions<GospodarstwoContext> options)
-            : base(options)
-        {
+            : base(options) { }
+        public GospodarstwoContext() { }
 
-        }        
-        public GospodarstwoContext()
-        {
-
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder
-                .UseLazyLoadingProxies()
-                .UseNpgsql("Host=localhost;Database=agrocontrol_db;Username=postgres;Password=123qweasd");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder
+        //        .UseLazyLoadingProxies()
+        //        .UseNpgsql("conn_string");
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

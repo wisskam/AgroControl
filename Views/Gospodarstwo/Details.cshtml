@@ -38,35 +38,38 @@
     </dl>
     @if (Model.ObiektyGospodarcze != null)
     {
-    <div class="container">
-        <div class="row justify-content-center">
-            @foreach (var obiektGospodarczy in Model.ObiektyGospodarcze)
-            {
-                <div class="card col-11 col-xs-11 col-sm-5 col-lg-3 m-2" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Obiekt: @Html.DisplayFor(og => obiektGospodarczy.Nazwa)</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Opis obiektu gospodarczego </p>
-                        <div class="row justify-content-between p-1">
-                            <span class="oi oi-cog ac-icon-primary px-2 pb-1"
-                                  data-toggle="tooltip" data-placement="top" title="Edytuj obiekt">
-                            </span>
-                            <span class="oi oi-calendar ac-icon-primary px-2 pb-1"
-                                  data-toggle="tooltip" data-placement="top"  title="Dodaj zdarzenie">
-                            </span>
-                            <span class="oi oi-trash ac-icon-primary px-2 pb-1" 
-                                  data-toggle="tooltip" data-placement="top"  title="Usuń obiekt">
-                            </span>
+        <div class="container">
+            <div class="row justify-content-center">
+                @foreach (var obiektGospodarczy in Model.ObiektyGospodarcze)
+                {
+                    <div class="card col-11 col-xs-11 col-sm-5 col-lg-3 m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Obiekt: @obiektGospodarczy.Nazwa</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                            <p class="card-text">Opis obiektu gospodarczego </p>
+                            <div class="row justify-content-between p-1">
+                                <span class="oi oi-cog ac-icon-primary px-2 pb-1"
+                                      data-toggle="tooltip" data-placement="top" title="Edytuj obiekt">
+                                </span>
+                                <span class="oi oi-calendar ac-icon-primary px-2 pb-1"
+                                      data-toggle="tooltip" data-placement="top" title="Dodaj zdarzenie">
+                                </span>
+                                <a data-toggle="tooltip" data-placement="top" title="Usuń obiekt">
+                                    <span class="oi oi-trash ac-icon-primary px-2 pb-1" data-toggle="modal" data-target="#deleteModal" data-el="@obiektGospodarczy.ID"/>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
-    </div>
     }
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ID">Edycja</a> |
     <a asp-action="Delete" asp-route-id="@Model.ID">Usuń</a> |
     <a asp-controller="Home" asp-action="Index">Powrót do strony głównej</a>
+</div>
+<div>
+    @await Component.InvokeAsync("DeleteModal", new { })
 </div>
