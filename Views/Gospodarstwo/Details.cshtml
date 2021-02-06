@@ -12,12 +12,16 @@
             <div class="col">
                 <h4>Informacje o gospodarstwie</h4>
             </div>
-            <div class="col d-flex flex-row-reverse">
-                <a asp-controller="ObiektGospodarczy" asp-action="Create"
-                   class="nav-item ac-link-dark font-weight-bolder text-">
-                    <span class="oi oi-plus ac-icon-primary align-text-top"></span>
-                    Dodaj obiekt gospodarczy
+            <div class="pb-3">
+                <a asp-action="Edit" asp-route-id="@Model.ID" class="nav-item ac-link-dark font-weight-bolder">
+                    <span class="oi oi-cog ac-icon-primary px-2 pb-1"></span>
+                    Edycja
                 </a>
+                <a asp-action="Delete" asp-route-id="@Model.ID" class="nav-item ac-link-dark font-weight-bolder">
+                    <span class="oi oi-trash ac-icon-primary px-2 pb-1"></span>
+                    Usuń
+                </a>
+                @*<a asp-controller="Home" asp-action="Index">Powrót do strony głównej</a>*@
             </div>
         </div>
     </div>
@@ -36,6 +40,14 @@
             @Html.DisplayFor(model => model.Wlasciciel)
         </dd>
     </dl>
+    <hr />
+    <div class="col d-flex flex-row-reverse pb-2">
+        <a asp-controller="ObiektGospodarczy" asp-action="Create"
+           class="nav-item ac-link-dark font-weight-bolder">
+            <span class="oi oi-plus ac-icon-primary align-text-top"></span>
+            Dodaj obiekt gospodarczy
+        </a>
+    </div>
     @if (Model.ObiektyGospodarcze != null)
     {
         <div class="container">
@@ -55,7 +67,7 @@
                                       data-toggle="tooltip" data-placement="top" title="Dodaj zdarzenie">
                                 </span>
                                 <a data-toggle="tooltip" data-placement="top" title="Usuń obiekt">
-                                    <span class="oi oi-trash ac-icon-primary px-2 pb-1" data-toggle="modal" data-target="#deleteModal" data-el="@obiektGospodarczy.ID"/>
+                                    <span class="oi oi-trash ac-icon-primary px-2 pb-1" data-toggle="modal" data-target="#deleteModal" data-el="@obiektGospodarczy.ID" />
                                 </a>
                             </div>
                         </div>
@@ -64,11 +76,6 @@
             </div>
         </div>
     }
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edycja</a> |
-    <a asp-action="Delete" asp-route-id="@Model.ID">Usuń</a> |
-    <a asp-controller="Home" asp-action="Index">Powrót do strony głównej</a>
 </div>
 <div>
     @await Component.InvokeAsync("DeleteModal", new { })

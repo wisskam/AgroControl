@@ -7,28 +7,39 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AgroControl.DBContexts;
 using AgroControl.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace AgroControl.Controllers
 {
+    [Authorize]
     public class GospodarstwoController : Controller
     {
         private readonly GospodarstwoContext _context;
+        //private readonly UserManager<AppUser> _userManager;
 
-        public GospodarstwoController(GospodarstwoContext context)
+        public GospodarstwoController(GospodarstwoContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            //_userManager = userManager;
         }
 
         // GET: Gospodarstwo
         public async Task<IActionResult> Index()
         {
-            if(_context.Gospodarstwo.Count() == 0)
+            int userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var gospodarstwo = await _context.Gospodarstwo.FirstOrDefaultAsync(x => x.UserID == userID);
+
+
+            if (gospodarstwo == null)
             {
-                return View(await _context.Gospodarstwo.ToListAsync());
+                return View();
             }
             else
             {
-                return View("Details", _context.Gospodarstwo.First());
+                SetViewBagMessages();
+                return View("Details", gospodarstwo);
             }
         }
 
@@ -43,7 +54,8 @@ namespace AgroControl.Controllers
             Gospodarstwo gospodarstwo = await _context.Gospodarstwo
                 .FirstOrDefaultAsync(m => m.ID == id);
 
-
+            SetViewBagMessages();
+            
             if (gospodarstwo == null)
             {
                 return NotFound();
@@ -53,12 +65,14 @@ namespace AgroControl.Controllers
         }
 
         // GET: Gospodarstwo/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             using (_context)
             {
-                var gospodarstwo = _context.Gospodarstwo;
-                if(gospodarstwo.Count() >= 1)
+                int userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+                var gospodarstwo = await _context.Gospodarstwo.FirstOrDefaultAsync(x => x.UserID == userID);
+
+                if (gospodarstwo != null)
                 {
                     return RedirectToAction("Index");
                 }
@@ -75,7 +89,11 @@ namespace AgroControl.Controllers
         {
             if (ModelState.IsValid)
             {
+                int userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+                gospodarstwo.UserID = userID;
+
                 _context.Add(gospodarstwo);
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -165,6 +183,12 @@ namespace AgroControl.Controllers
         private bool GospodarstwoExists(int id)
         {
             return _context.Gospodarstwo.Any(e => e.ID == id);
+        }
+
+        private void SetViewBagMessages()
+        {
+            ViewBag.Message += TempData["Message"];
+            ViewBag.MessageType += TempData["MessageType"];
         }
     }
 }

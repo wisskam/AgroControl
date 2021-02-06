@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AgroControl.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AgroControl.Controllers
 {
@@ -19,13 +20,17 @@ namespace AgroControl.Controllers
 
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
+            SetViewBagMessages();
             return View();
         }
 
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
+            SetViewBagMessages();
             return View();
         }
 
@@ -33,6 +38,11 @@ namespace AgroControl.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        private void SetViewBagMessages()
+        {
+            ViewBag.Message += TempData["Message"];
+            ViewBag.MessageType += TempData["MessageType"];
         }
     }
 }

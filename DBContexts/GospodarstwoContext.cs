@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Proxies;
 using AgroControl.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace AgroControl.DBContexts
 {
-    public class GospodarstwoContext : DbContext
+    public class GospodarstwoContext : IdentityDbContext<AppUser, AppRole, int>
     {
         public DbSet<Gospodarstwo> Gospodarstwo { get; set; }
         public DbSet<ObiektGospodarczy> ObiektyGospodarcze { get; set; }

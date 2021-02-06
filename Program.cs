@@ -28,42 +28,5 @@ namespace AgroControl
                 }
         );
 
-        private static void InsertData()
-        {
-            using (var context = new GospodarstwoContext())
-            {
-                // Creates the database if not exists
-                context.Database.EnsureCreated();
-
-                // Adds a publisher
-                var gospodarstwo = new Gospodarstwo
-                {
-                    Nazwa = "Gospodarstwo Rolne Jan Kowalski",
-                    Wlasciciel = "Jan Kowalski"
-                };
-                context.Gospodarstwo.Add(gospodarstwo);
-
-                // Saves changes
-                context.SaveChanges();
-            }
-        }
-
-        private static void PrintData()
-        {
-            // Gets and prints all books in database
-            using (var context = new GospodarstwoContext())
-            {
-                var gospodarstwa = context.Gospodarstwo;
-                foreach (var gospodarstwo in gospodarstwa)
-                {
-                    var data = new StringBuilder();
-                    data.AppendLine($"ID: {gospodarstwo.ID}");
-                    data.AppendLine($"Nazwa: {gospodarstwo.Nazwa}");
-                    data.AppendLine($"W³aœciciel: {gospodarstwo.Wlasciciel}");
-                    Console.WriteLine(data.ToString());
-                }
-            }
-        }
-
     }
 }

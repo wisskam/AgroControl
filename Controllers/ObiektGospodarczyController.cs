@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AgroControl.DBContexts;
 using AgroControl.Models;
@@ -47,8 +48,13 @@ namespace AgroControl.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Nazwa")] ObiektGospodarczy obiektGospodarczy)
         {
-            obiektGospodarczy.Gospodarstwo = _context.Gospodarstwo.First();
-            obiektGospodarczy.GospodarstwoID = _context.Gospodarstwo.First().ID;
+
+            int userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var gospodarstwo = await _context.Gospodarstwo.FirstOrDefaultAsync(x => x.UserID == userID);
+
+            obiektGospodarczy.Gospodarstwo = gospodarstwo;
+            obiektGospodarczy.GospodarstwoID = gospodarstwo.ID;
+
             if (ModelState.IsValid)
             {
                 _context.Add(obiektGospodarczy);
@@ -93,20 +99,5 @@ namespace AgroControl.Controllers
 
             return RedirectToAction("Index", "Gospodarstwo");
         }
-
-        //// POST: ObiektGospodarczyController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }
