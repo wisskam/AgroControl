@@ -1,0 +1,49 @@
+﻿@model AgroControl.Models.EventRejestrTransportu
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edycja zdarzenia</h1>
+
+<h4>Rejestr Transportu</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditEventRejestrTransportu">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DataIGodzinaWjazdu" class="control-label"></label>
+                <input asp-for="DataIGodzinaWjazdu" class="form-control" />
+                <span asp-validation-for="DataIGodzinaWjazdu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NazwaLubNrRejestracji" class="control-label"></label>
+                <input asp-for="NazwaLubNrRejestracji" class="form-control" />
+                <span asp-validation-for="NazwaLubNrRejestracji" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CelWjazdu" class="control-label"></label>
+                <input asp-for="CelWjazdu" class="form-control" />
+                <span asp-validation-for="CelWjazdu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OstatniPobytPojazdu" class="control-label"></label>
+                <input asp-for="OstatniPobytPojazdu" class="form-control" />
+                <span asp-validation-for="OstatniPobytPojazdu" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="ID" />
+            <input type="hidden" asp-for="CreatedDate" />
+            <input type="hidden" asp-for="EventType" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

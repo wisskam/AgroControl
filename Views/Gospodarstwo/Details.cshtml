@@ -67,7 +67,9 @@
                                       data-toggle="tooltip" data-placement="top" title="Dodaj zdarzenie">
                                 </span>
                                 <a data-toggle="tooltip" data-placement="top" title="Usuń obiekt">
-                                    <span class="oi oi-trash ac-icon-primary px-2 pb-1" data-toggle="modal" data-target="#deleteModal" data-el="@obiektGospodarczy.ID" />
+                                    <span class="oi oi-trash ac-icon-primary px-2 pb-1" 
+                                          data-toggle="modal" data-target="#deleteModal" data-id="@obiektGospodarczy.ID" 
+                                          data-action="ObiektGospodarczy/Delete/"/>
                                 </a>
                             </div>
                         </div>

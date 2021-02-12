@@ -17,12 +17,10 @@ namespace AgroControl.Controllers
     public class GospodarstwoController : Controller
     {
         private readonly GospodarstwoContext _context;
-        //private readonly UserManager<AppUser> _userManager;
 
-        public GospodarstwoController(GospodarstwoContext context, UserManager<AppUser> userManager)
+        public GospodarstwoController(GospodarstwoContext context)
         {
             _context = context;
-            //_userManager = userManager;
         }
 
         // GET: Gospodarstwo
@@ -176,6 +174,10 @@ namespace AgroControl.Controllers
         {
             var gospodarstwo = await _context.Gospodarstwo.FindAsync(id);
             _context.Gospodarstwo.Remove(gospodarstwo);
+
+            TempData["Message"] = "Obiekt gospodarczy usunięty!";
+            TempData["MessageType"] = "success";
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

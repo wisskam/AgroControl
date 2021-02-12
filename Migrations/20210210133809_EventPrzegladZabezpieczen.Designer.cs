@@ -3,15 +3,17 @@ using System;
 using AgroControl.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AgroControl.Migrations
 {
     [DbContext(typeof(GospodarstwoContext))]
-    partial class GospodarstwoContextModelSnapshot : ModelSnapshot
+    [Migration("20210210133809_EventPrzegladZabezpieczen")]
+    partial class EventPrzegladZabezpieczen
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,9 +183,6 @@ namespace AgroControl.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("GospodarstwoID")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ObiektGospodarczyID")
                         .HasColumnType("integer");
 
                     b.Property<string>("PodjeteNaprawyBudynek")

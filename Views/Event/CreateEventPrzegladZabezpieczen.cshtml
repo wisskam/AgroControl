@@ -1,0 +1,104 @@
+﻿@model AgroControl.Models.EventPrzegladZabezpieczen
+
+@{
+    ViewData["Title"] = "CreateEventPrzegladZabezpieczen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CreateEventPrzegladZabezpieczen</h1>
+
+<h4>EventPrzegladZabezpieczen</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateEventPrzegladZabezpieczen">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DataPrzegladu" class="control-label"></label>
+                <input asp-for="DataPrzegladu" class="form-control" />
+                <span asp-validation-for="DataPrzegladu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ObiektGospodarczyID" class="control-label"></label>
+                <select  class="form-control" asp-for="ObiektGospodarczyID" 
+                        asp-items="@(new SelectList((List<ObiektGospodarczy>)ViewData["ObiektyGospodarcze"],"ID", "Nazwa"))">
+                </select>
+                <span asp-validation-for="ObiektGospodarczyID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SzczelnoscBudynku" class="control-label"></label>
+                <select class="form-control" asp-for="ObiektGospodarczyID"
+                        asp-items="@Html.GetEnumSelectList<OcenaSzczelnosci>()">
+                </select>
+                <span asp-validation-for="SzczelnoscBudynku" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SzczelnoscMagazynuPasz" class="control-label"></label>
+                <select asp-for="SzczelnoscMagazynuPasz" class="form-control"        
+                        asp-items="@Html.GetEnumSelectList<OcenaSzczelnosci>()">
+                </select>
+                <span asp-validation-for="SzczelnoscMagazynuPasz" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SzczelnoscOkienBudynku" class="control-label"></label>
+                <select asp-for="SzczelnoscOkienBudynku" class="form-control"
+                        asp-items="@Html.GetEnumSelectList<OcenaSzczelnosci>()">
+                </select>
+                <span asp-validation-for="SzczelnoscOkienBudynku" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SzczelnoscOkienMagazynuPasz" class="control-label"></label>
+                <select asp-for="SzczelnoscOkienMagazynuPasz" class="form-control"
+                        asp-items="@Html.GetEnumSelectList<OcenaSzczelnosci>()">
+                </select>
+                <span asp-validation-for="SzczelnoscOkienMagazynuPasz" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SzczelnoscDrzwiZewnetrzychBudynku" class="control-label"></label>
+                <select asp-for="SzczelnoscDrzwiZewnetrzychBudynku" class="form-control"
+                        asp-items="@Html.GetEnumSelectList<OcenaSzczelnosci>()">
+                </select>
+                <span asp-validation-for="SzczelnoscDrzwiZewnetrzychBudynku" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SzczelnoscDrzwiZewnetrzychMagazynuPasz" class="control-label"></label>
+                <select asp-for="SzczelnoscDrzwiZewnetrzychMagazynuPasz" class="form-control"
+                        asp-items="@Html.GetEnumSelectList<OcenaSzczelnosci>()">
+                </select>
+                <span asp-validation-for="SzczelnoscDrzwiZewnetrzychMagazynuPasz" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SzczelnoscDrzwiWewnętrzychBudynku" class="control-label"></label>
+                <select asp-for="SzczelnoscDrzwiWewnętrzychBudynku" class="form-control"
+                        asp-items="@Html.GetEnumSelectList<OcenaSzczelnosci>()">
+                </select>
+                <span asp-validation-for="SzczelnoscDrzwiWewnętrzychBudynku" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SzczelnoscDrzwiWewnętrznychMagazynuPasz" class="control-label"></label>
+                <select asp-for="SzczelnoscDrzwiWewnętrznychMagazynuPasz" class="form-control"
+                        asp-items="@Html.GetEnumSelectList<OcenaSzczelnosci>()">
+                </select>
+                <span asp-validation-for="SzczelnoscDrzwiWewnętrznychMagazynuPasz" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PodjeteNaprawyBudynek" class="control-label"></label>
+                <input asp-for="PodjeteNaprawyBudynek" class="form-control" />
+                <span asp-validation-for="PodjeteNaprawyBudynek" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PodjeteNaprawyMagazynPasz" class="control-label"></label>
+                <input asp-for="PodjeteNaprawyMagazynPasz" class="form-control" />
+                <span asp-validation-for="PodjeteNaprawyMagazynPasz" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

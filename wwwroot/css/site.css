@@ -101,3 +101,7 @@ body {
     color: #bdb2b0 !important;
     text-decoration: none;
 }
+
+.ac-clickable{
+    cursor: pointer;
+}

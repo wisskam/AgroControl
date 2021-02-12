@@ -1,0 +1,78 @@
+﻿@model List<AgroControl.Models.EventModelBase>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div class="row justify-content-between">
+    <div class="col-12 col-lg-4 mt-1 mb-3">
+        <div class="card" style="">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item my-1 ac-clickable"
+                    onclick="location.href='@Url.Action("CreateEventRejestrTransportu", "Event")'">
+                    Rejestracja transportu
+                </li>
+                <li class="list-group-item my-1 ac-clickable"
+                    onclick="location.href='@Url.Action("CreateEventRejestrWejscWyjsc", "Event")'">
+                    Rejestr wejść / wyjśc
+                </li>
+                <li class="list-group-item my-1 ac-clickable"
+                    onclick="location.href='@Url.Action("CreateEventSpisZwierzat", "Event")'">
+                    Spis zwierząt
+                </li>
+                <li class="list-group-item my-1 ac-clickable"
+                    onclick="location.href='@Url.Action("CreateEventDezynfekcja", "Event")'">
+                    Dezynfekcja
+                </li>
+                <li class="list-group-item my-1 ac-clickable"
+                    onclick="location.href='@Url.Action("CreateEventPrzegladZabezpieczen", "Event")'">
+                    Przegląd zabezpieczeń
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-12 col-lg-8">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Lp.</th>
+                    <th scope="col">Rodzaj zdarzenia</th>
+                    <th scope="col">Data utworzenia</th>
+                    <th scope="col">Opcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @for (int i = 0; i < Model.Count(); i++)
+                    {
+                        string editAction = $"EditEvent{Model[i].EventType.ToString()}";
+                        string deleteType = $"Event{Model[i].EventType.ToString()}";
+                        <tr>
+                            <th scope="row">@(i + 1)</th>
+                            <td>@Model[i].EventType</td>
+                            <td>@Model[i].CreatedDate</td>
+                            <td>
+                                <a asp-action="@editAction" asp-route-id="@Model[i].ID"
+                                   data-toggle="tooltip" data-placement="top" title="Edytuj obiekt">
+                                    <span class="oi oi-cog ac-icon-primary px-2 pb-1" />
+                                </a>
+                                <a data-toggle="tooltip" data-placement="top" title="Usuń obiekt">
+                                    <span data-toggle="modal" data-target="#deleteModal"
+                                          data-id="@Model[i].ID" data-type="@deleteType"
+                                          data-action="Event/Delete/" class="oi oi-trash ac-icon-primary px-2 pb-1" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div>
+    @await Component.InvokeAsync("DeleteModal", new { })
+</div>

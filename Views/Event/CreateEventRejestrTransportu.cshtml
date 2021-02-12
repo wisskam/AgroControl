@@ -1,0 +1,52 @@
+﻿@model AgroControl.Models.EventRejestrTransportu
+
+@{
+    ViewData["Title"] = "CreateEventRejestrTransportu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<h1>CreateEventRejestrTransportu</h1>
+
+<h4>EventRejestrTransportu</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateEventRejestrTransportu">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DataIGodzinaWjazdu" class="control-label"></label>
+                <input asp-for="DataIGodzinaWjazdu" class="form-control" />
+                <span asp-validation-for="DataIGodzinaWjazdu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NazwaLubNrRejestracji" class="control-label"></label>
+                <input asp-for="NazwaLubNrRejestracji" class="form-control" />
+                <span asp-validation-for="NazwaLubNrRejestracji" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CelWjazdu" class="control-label"></label>
+                <input asp-for="CelWjazdu" class="form-control" />
+                <span asp-validation-for="CelWjazdu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OstatniPobytPojazdu" class="control-label"></label>
+                <input asp-for="OstatniPobytPojazdu" class="form-control" />
+                <span asp-validation-for="OstatniPobytPojazdu" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="O" class="control-label"></label>
+                <select asp-for="SelectedTags" asp-items="Model.O"></select>
+                <span asp-validation-for="OstatniPobytPojazdu" class="text-danger"></span>
+            </div>*@
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

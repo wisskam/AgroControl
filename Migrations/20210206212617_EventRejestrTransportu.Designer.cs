@@ -3,15 +3,17 @@ using System;
 using AgroControl.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AgroControl.Migrations
 {
     [DbContext(typeof(GospodarstwoContext))]
-    partial class GospodarstwoContextModelSnapshot : ModelSnapshot
+    [Migration("20210206212617_EventRejestrTransportu")]
+    partial class EventRejestrTransportu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,108 +121,6 @@ namespace AgroControl.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("AgroControl.Models.EventDezynfekcja", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("DataZabiegu")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("EventType")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("GospodarstwoID")
-                        .HasColumnType("integer");
-
-                    b.Property<double>("IloscPrzyrzadzonegoRoztworu")
-                        .HasColumnType("double precision");
-
-                    b.Property<double>("IloscUzytegoRoztworu")
-                        .HasColumnType("double precision");
-
-                    b.Property<int>("ObiektGospodarczyID")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("SrodekDezynfekujacy")
-                        .HasColumnType("text");
-
-                    b.Property<int>("ZabiegDlaObiektGospodarczy")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ZabiegDlaSprzetNarzędzia")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ZabiegDlaWejscWyjsc")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("EventsDezynfekcja");
-                });
-
-            modelBuilder.Entity("AgroControl.Models.EventPrzegladZabezpieczen", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("DataPrzegladu")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("EventType")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("GospodarstwoID")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ObiektGospodarczyID")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("PodjeteNaprawyBudynek")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PodjeteNaprawyMagazynPasz")
-                        .HasColumnType("text");
-
-                    b.Property<int>("SzczelnoscBudynku")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SzczelnoscDrzwiWewnętrznychMagazynuPasz")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SzczelnoscDrzwiWewnętrzychBudynku")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SzczelnoscDrzwiZewnetrzychBudynku")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SzczelnoscDrzwiZewnetrzychMagazynuPasz")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SzczelnoscMagazynuPasz")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SzczelnoscOkienBudynku")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SzczelnoscOkienMagazynuPasz")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("EventsPrzegladZabezpieczen");
-                });
-
             modelBuilder.Entity("AgroControl.Models.EventRejestrTransportu", b =>
                 {
                     b.Property<int>("ID")
@@ -254,107 +154,7 @@ namespace AgroControl.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("EventsRejestrTransportu");
-                });
-
-            modelBuilder.Entity("AgroControl.Models.EventRejestrWejscWyjsc", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("CelWejscia")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<bool>("CzyZastosowanoOchrone")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("DataIGodzinaWejścia")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("DataOstatniegoPobytu")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("EventType")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("GospodarstwoID")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("MiejsceOstatniegoPobytu")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NazwaFirmy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NazwaNumerBudynku")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NazwaOsobyWchodzacej")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("ObiektGospodarczyID")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ObiektGospodarczyID");
-
-                    b.ToTable("EventsRejestrWejscWyjsc");
-                });
-
-            modelBuilder.Entity("AgroControl.Models.EventSpisZwierzat", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("DataSpisu")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("EventType")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("GospodarstwoID")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("LiczbaKnurkow")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("LiczbaKnurow")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("LiczbaLoch")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("LiczbaLoszek")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("LiczbaProsiat")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("LiczbaTucznikow")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("LiczbaWarchlakow")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("EventsSpisZwierzat");
+                    b.ToTable("EventRejestrTransportu");
                 });
 
             modelBuilder.Entity("AgroControl.Models.Gospodarstwo", b =>
@@ -500,15 +300,6 @@ namespace AgroControl.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("AgroControl.Models.EventRejestrWejscWyjsc", b =>
-                {
-                    b.HasOne("AgroControl.Models.ObiektGospodarczy", "ObiektGospodarczy")
-                        .WithMany()
-                        .HasForeignKey("ObiektGospodarczyID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("AgroControl.Models.ObiektGospodarczy", b =>

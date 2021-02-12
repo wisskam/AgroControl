@@ -1,0 +1,66 @@
+﻿@model AgroControl.Models.EventSpisZwierzat
+
+@{
+    ViewData["Title"] = "CreateEventSpisZwierzat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CreateEventSpisZwierzat</h1>
+
+<h4>EventSpisZwierzat</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateEventSpisZwierzat">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DataSpisu" class="control-label"></label>
+                <input asp-for="DataSpisu" class="form-control" />
+                <span asp-validation-for="DataSpisu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LiczbaProsiat" class="control-label"></label>
+                <input asp-for="LiczbaProsiat" class="form-control" />
+                <span asp-validation-for="LiczbaProsiat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LiczbaWarchlakow" class="control-label"></label>
+                <input asp-for="LiczbaWarchlakow" class="form-control" />
+                <span asp-validation-for="LiczbaWarchlakow" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LiczbaTucznikow" class="control-label"></label>
+                <input asp-for="LiczbaTucznikow" class="form-control" />
+                <span asp-validation-for="LiczbaTucznikow" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LiczbaLoch" class="control-label"></label>
+                <input asp-for="LiczbaLoch" class="form-control" />
+                <span asp-validation-for="LiczbaLoch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LiczbaLoszek" class="control-label"></label>
+                <input asp-for="LiczbaLoszek" class="form-control" />
+                <span asp-validation-for="LiczbaLoszek" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LiczbaKnurow" class="control-label"></label>
+                <input asp-for="LiczbaKnurow" class="form-control" />
+                <span asp-validation-for="LiczbaKnurow" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LiczbaKnurkow" class="control-label"></label>
+                <input asp-for="LiczbaKnurkow" class="form-control" />
+                <span asp-validation-for="LiczbaKnurkow" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

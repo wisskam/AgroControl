@@ -1,0 +1,74 @@
+﻿@model AgroControl.Models.EventDezynfekcja
+
+@{
+    ViewData["Title"] = "CreateEventDezynfekcja";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CreateEventDezynfekcja</h1>
+
+<h4>EventDezynfekcja</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateEventDezynfekcja">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DataZabiegu" class="control-label"></label>
+                <input asp-for="DataZabiegu" class="form-control" />
+                <span asp-validation-for="DataZabiegu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ObiektGospodarczyID" class="control-label"></label>
+                <select asp-for="ObiektGospodarczyID" class="form-control"
+                        asp-items="@(new SelectList((List<ObiektGospodarczy>)ViewData["ObiektyGospodarcze"],"ID","Nazwa"))">
+                </select>
+                <span asp-validation-for="ObiektGospodarczyID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZabiegDlaObiektGospodarczy" class="control-label"></label>
+                <select  class="form-control" asp-for="ZabiegDlaObiektGospodarczy"
+                        asp-items="Html.GetEnumSelectList<RodzajZabiegu>()">
+                </select>
+                <span asp-validation-for="ZabiegDlaObiektGospodarczy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZabiegDlaSprzetNarzędzia" class="control-label"></label>
+                <select asp-for="ZabiegDlaSprzetNarzędzia" class="form-control"
+                        asp-items="Html.GetEnumSelectList<RodzajZabiegu>()">
+                </select>
+                <span asp-validation-for="ZabiegDlaSprzetNarzędzia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZabiegDlaWejscWyjsc" class="control-label"></label>
+                <select asp-for="ZabiegDlaWejscWyjsc" class="form-control"
+                        asp-items="Html.GetEnumSelectList<RodzajZabiegu>()">
+                </select>
+                <span asp-validation-for="ZabiegDlaWejscWyjsc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SrodekDezynfekujacy" class="control-label"></label>
+                <input asp-for="SrodekDezynfekujacy" class="form-control" />
+                <span asp-validation-for="SrodekDezynfekujacy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IloscPrzyrzadzonegoRoztworu" class="control-label"></label>
+                <input asp-for="IloscPrzyrzadzonegoRoztworu" class="form-control" />
+                <span asp-validation-for="IloscPrzyrzadzonegoRoztworu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IloscUzytegoRoztworu" class="control-label"></label>
+                <input asp-for="IloscUzytegoRoztworu" class="form-control" />
+                <span asp-validation-for="IloscUzytegoRoztworu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
