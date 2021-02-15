@@ -13,6 +13,8 @@ namespace AgroControl.Models
         [Display(Name = "Obiekt Gospodarczy")]
         public int ObiektGospodarczyID { get; set; }
 
+        public virtual ObiektGospodarczy ObiektGospodarczy { get; set; }
+
         [Display(Name = "Zabieg dla obiektu gospodarczego")]
         public RodzajZabiegu ZabiegDlaObiektGospodarczy { get; set; } = RodzajZabiegu.CzyszczenieDezynfekcja;
 
@@ -31,8 +33,22 @@ namespace AgroControl.Models
         [Display(Name = "Ilość użytego roztworu")]
         public double IloscUzytegoRoztworu { get; set; } = 0;
 
-
-
+        public static string NazwaSkroconaRodzajuZabiegu(RodzajZabiegu zabieg)
+        {
+            switch (zabieg)
+            {
+                case RodzajZabiegu.Czyszczenie:
+                    return "C";
+                case RodzajZabiegu.CzyszczenieDezynfekcja:
+                    return "C/D";
+                case RodzajZabiegu.Dezynfekcja:
+                    return "D";
+                case RodzajZabiegu.Uzupelnienie:
+                    return "U";
+                default:
+                    return "";
+            }
+        }
     }
 
     public enum RodzajZabiegu

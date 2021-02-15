@@ -1,31 +1,45 @@
 ﻿@model List<AgroControl.Models.EventModelBase>
 @{
     ViewData["Title"] = "Index";
+    var page = 0;
 }
+<h1>Rejestr zdarzeń w gospodarstwie</h1>
+<div class="row justify-content-end">
+    <div class="col-md-2 col-sm-4 col-5">
+        <a class="nav-item ac-link-dark font-weight-bolder" data-toggle="modal" data-target="#pdfGeneratorModal">
+            <span class="oi oi-bar-chart ac-icon-primary px-2 pb-1"></span>
+            Generuj
+        </a>
+    </div>
+</div>
 
-<h1>Index</h1>
-<div class="row justify-content-between">
+<div class="row justify-content-between mt-4">
     <div class="col-12 col-lg-4 mt-1 mb-3">
         <div class="card" style="">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item my-1 ac-clickable"
-                    onclick="location.href='@Url.Action("CreateEventRejestrTransportu", "Event")'">
-                    Rejestracja transportu
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-action"
+                    onclick="location.href='Event/CreateEventRejestrTransportu/'">
+                    <img src="~/assets/general/delivery-truck.svg" width="50" />
+                    Rejestr transportu
                 </li>
-                <li class="list-group-item my-1 ac-clickable"
-                    onclick="location.href='@Url.Action("CreateEventRejestrWejscWyjsc", "Event")'">
-                    Rejestr wejść / wyjśc
+                <li class="list-group-item list-group-item-action"
+                    onclick="location.href='Event/CreateEventRejestrWejscWyjsc/'">
+                    <img src="~/assets/general/farmer2.svg" width="50" />
+                    Rejestr wejść/wyjść
                 </li>
-                <li class="list-group-item my-1 ac-clickable"
-                    onclick="location.href='@Url.Action("CreateEventSpisZwierzat", "Event")'">
-                    Spis zwierząt
-                </li>
-                <li class="list-group-item my-1 ac-clickable"
-                    onclick="location.href='@Url.Action("CreateEventDezynfekcja", "Event")'">
+                <li class="list-group-item list-group-item-action"
+                    onclick="location.href='Event/CreateEventDezynfekcja/'">
+                    <img src="~/assets/general/tools.svg" width="50" />
                     Dezynfekcja
                 </li>
-                <li class="list-group-item my-1 ac-clickable"
-                    onclick="location.href='@Url.Action("CreateEventPrzegladZabezpieczen", "Event")'">
+                <li class="list-group-item list-group-item-action"
+                    onclick="location.href='Event/CreateEventSpisZwierzat/'">
+                    <img src="~/assets/general/pig.svg" width="50" />
+                    Spis zwierząt
+                </li>
+                <li class="list-group-item list-group-item-action"
+                    onclick="location.href='Event/CreateEventPrzegladZabezpieczen/'">
+                    <img src="~/assets/general/farm.svg" width="50" />
                     Przegląd zabezpieczeń
                 </li>
             </ul>
@@ -69,10 +83,32 @@
 
             </tbody>
         </table>
+        <div class="d-flex justify-content-center">
+            <nav aria-label="...">
+                <ul class="pagination pagination-sm">
+                    @for (int i = 1; i <= ViewBag.Pages; i++)
+                    {
+                        @if (ViewBag.Current == i)
+                        {
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">@i</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="Event" asp-action="Index" asp-route-page="@i">@i</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 
 
 <div>
     @await Component.InvokeAsync("DeleteModal", new { })
+    <partial name="_ReportGeneraotrModalPartial" />
 </div>

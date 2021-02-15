@@ -105,3 +105,62 @@ body {
 .ac-clickable{
     cursor: pointer;
 }
+
+#cloud1{
+    animation: cloud-animation 15s alternate-reverse infinite linear;
+}
+#cloud2{
+    animation: cloud-animation 14s alternate infinite linear;
+}
+#cloud3{
+    animation: cloud-animation 12s alternate-reverse infinite linear;
+}
+#tractor{
+    animation: tractor-animation 10s alternate-reverse infinite linear;
+}
+
+@keyframes cloud-animation{
+    from{
+        transform: translateX(0);
+    }
+    from{
+        transform: translateX(-65px);
+    }
+}
+
+@keyframes tractor-animation{
+    from{
+        transform: translateX(0);
+    }
+    from{
+        transform: translateX(-100px);
+    }
+}
+
+.ac-home-parallax{
+}
+
+.ac-rounded {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+.ac-home-title{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    padding: 40px;
+    background-color: rgba(64, 115, 82, 0.80);
+}
+.ac-pdf-table{
+    border: solid 1px black;
+}
+.ac-pdf-table th{
+    border: solid 1px black;
+}
+.ac-pdf-table td{
+    border: solid 1px black;
+    height: 27px;
+}

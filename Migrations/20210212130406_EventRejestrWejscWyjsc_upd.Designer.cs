@@ -3,15 +3,17 @@ using System;
 using AgroControl.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AgroControl.Migrations
 {
     [DbContext(typeof(GospodarstwoContext))]
-    partial class GospodarstwoContextModelSnapshot : ModelSnapshot
+    [Migration("20210212130406_EventRejestrWejscWyjsc_upd")]
+    partial class EventRejestrWejscWyjsc_upd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,8 +162,6 @@ namespace AgroControl.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("ObiektGospodarczyID");
 
                     b.ToTable("EventsDezynfekcja");
                 });
@@ -498,15 +498,6 @@ namespace AgroControl.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("AgroControl.Models.EventDezynfekcja", b =>
-                {
-                    b.HasOne("AgroControl.Models.ObiektGospodarczy", "ObiektGospodarczy")
-                        .WithMany()
-                        .HasForeignKey("ObiektGospodarczyID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("AgroControl.Models.EventRejestrWejscWyjsc", b =>

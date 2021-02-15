@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div class="modal fade" id="pdfGeneratorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form asp-controller="Printout" asp-action="CreatePDF">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Generowanie raportu.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label for="from">Od</label>
+                        <input name="from" type="datetime-local" value="@DateTime.Now" class="form-control" />
+
+                        <label for="to">Do</label>
+                        <input name="to" type="datetime-local" value="@DateTime.Now" class="form-control" />
+
+                        <label for="eventType">Od</label>
+                        <select name="eventType" class="form-control"
+                                asp-items="@Html.GetEnumSelectList<EventTypes>()">
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                    <input type="submit" value="CreatePDF" class="btn btn-success" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

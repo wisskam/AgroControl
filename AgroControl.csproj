@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
 
   <ItemGroup>
     <Compile Remove="Migrations\20210206211804_EventRejestrTransportu.cs" />
@@ -23,8 +24,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.11" />
+    <PackageReference Include="RndUsr0.DinkToPdf" Version="1.0.9-20190207.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -1607,6 +1609,10 @@
     <None Include="wwwroot\assets\open-iconic\webp\zoom-out-6x.webp" />
     <None Include="wwwroot\assets\open-iconic\webp\zoom-out-8x.webp" />
     <None Include="wwwroot\assets\open-iconic\webp\zoom-out.webp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\general\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,42 @@
+﻿
+<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Które zdarzenie chcesz dodać?
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action"
+                       data-action="Event/CreateEventRejestrWejscWyjsc/">
+                        <img src="~/assets/general/farmer2.svg" width="50" />
+                        Rejestr wejść/wyjść
+                    </a>
+                    <a class="list-group-item list-group-item-action"
+                       data-action="Event/CreateEventDezynfekcja/">
+                        <img src="~/assets/general/tools.svg" width="50" />
+                        Dezynfekcja
+                    </a>
+                    <a class="list-group-item list-group-item-action" 
+                       data-action="Event/CreatePrzegladZabezpieczen/">
+                        <img src="~/assets/general/farm.svg" width="50" />
+                        Przegląd zabezpieczeń
+                    </a>
+                    <a class="list-group-item list-group-item-action" 
+                       data-action="Event/CreateEventSpisZwierzat/">
+                        <img src="~/assets/general/pig.svg" width="50" />
+                        Spis zwierząt
+                    </a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+            </div>
+        </div>
+    </div>
+</div>

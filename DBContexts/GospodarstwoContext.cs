@@ -62,7 +62,7 @@ namespace AgroControl.DBContexts
                 entity.Property(e => e.NazwaOsobyWchodzacej).IsRequired();
                 entity.Property(e => e.NazwaFirmy).IsRequired();
                 entity.Property(e => e.CelWejscia).IsRequired();
-                entity.Property(e => e.NazwaNumerBudynku).IsRequired();
+                //entity.Property(e => e.NazwaNumerBudynku).IsRequired();
                 entity.Property(e => e.DataOstatniegoPobytu).IsRequired();
                 entity.Property(e => e.MiejsceOstatniegoPobytu).IsRequired();
                 entity.Property(e => e.CzyZastosowanoOchrone).IsRequired();

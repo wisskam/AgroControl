@@ -25,7 +25,7 @@ namespace AgroControl.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page)
         {
             SetViewBagMessages();
 
@@ -51,20 +51,35 @@ namespace AgroControl.Controllers
                 await _context.EventsPrzegladZabezpieczen.ToListAsync();
             baseEvents.AddRange(eventPrzegladZabezpieczen.Cast<EventModelBase>().ToList());
 
-            
-            return View(baseEvents.OrderByDescending(x => x.CreatedDate).ToList());
+            ViewBag.Pages = Math.Ceiling(baseEvents.Count() / 10d);
+            ViewBag.Current = page == 0 ? 1 : page;
+
+            if (page != 0)
+            {
+                int count = baseEvents.Count();
+                int start = ((page * 10) - 10) > count ? 0 : ((page * 10) - 10);
+                int amount = ((count - start) / 10d) > 1 ? 10 : count - start;
+                return View(baseEvents.OrderByDescending(x => x.CreatedDate).ToList().GetRange(start, amount));
+            }
+
+            return View(baseEvents.OrderByDescending(x => x.CreatedDate).ToList().GetRange(0, 10));
         }
 
         public IActionResult CreateEventRejestrTransportu()
         {
             return View();
         }
-        public async Task<IActionResult> CreateEventRejestrWejscWyjsc()
+        public async Task<IActionResult> CreateEventRejestrWejscWyjsc(int obiektGospodarczyID)
         {
+            EventRejestrWejscWyjsc eventRejestrWejscWyjsc = new EventRejestrWejscWyjsc();
+            if(obiektGospodarczyID != 0)
+            {
+                eventRejestrWejscWyjsc.ObiektGospodarczyID = obiektGospodarczyID;
+            }
             int gospodarstwoID = await GetCurrentGospodarstwoID();
             ViewData["ObiektyGospodarcze"] = 
                 await _context.ObiektyGospodarcze.Where(x => x.GospodarstwoID == gospodarstwoID).ToListAsync();
-            return View();
+            return View(eventRejestrWejscWyjsc);
         }
         public IActionResult CreateEventSpisZwierzat()
         {
@@ -169,11 +184,11 @@ namespace AgroControl.Controllers
                     EventRejestrWejscWyjsc eventRejestrWejscWyjsc = 
                         (EventRejestrWejscWyjsc)Convert.ChangeType(newEvent, typeof(EventRejestrWejscWyjsc));
 
-                    ObiektGospodarczy og = await _context.ObiektyGospodarcze.
-                        FirstOrDefaultAsync(x => x.ID == int.Parse(eventRejestrWejscWyjsc.NazwaNumerBudynku));
+                    //ObiektGospodarczy og = await _context.ObiektyGospodarcze.
+                    //    FirstOrDefaultAsync(x => x.ID == int.Parse(eventRejestrWejscWyjsc.NazwaNumerBudynku));
 
-                    eventRejestrWejscWyjsc.ObiektGospodarczyID = int.Parse(eventRejestrWejscWyjsc.NazwaNumerBudynku);
-                    eventRejestrWejscWyjsc.NazwaNumerBudynku = og.Nazwa;
+                    //eventRejestrWejscWyjsc.ObiektGospodarczyID = int.Parse(eventRejestrWejscWyjsc.NazwaNumerBudynku);
+                    //eventRejestrWejscWyjsc.NazwaNumerBudynku = og.Nazwa;
                     eventRejestrWejscWyjsc.EventType = EventTypes.RejestrWejscWyjsc;
                     _context.Add(eventRejestrWejscWyjsc);
                 }
@@ -204,7 +219,7 @@ namespace AgroControl.Controllers
                 else
                 {
                     TempData["Message"] += "Nieznany typ zdarzenia";
-                    TempData["MessageType"] = "error";
+                    TempData["MessageType"] = "error";  
                     return RedirectToAction("Index");
                 }
             }
@@ -445,10 +460,10 @@ namespace AgroControl.Controllers
                     EventRejestrWejscWyjsc eventRejestrWejscWyjsc =
                         (EventRejestrWejscWyjsc)Convert.ChangeType(model, typeof(EventRejestrWejscWyjsc));
 
-                    ObiektGospodarczy og = await _context.ObiektyGospodarcze.
-                        FirstOrDefaultAsync(x => x.ID == int.Parse(eventRejestrWejscWyjsc.NazwaNumerBudynku));
+                    //ObiektGospodarczy og = await _context.ObiektyGospodarcze.
+                    //    FirstOrDefaultAsync(x => x.ID == int.Parse(eventRejestrWejscWyjsc.NazwaNumerBudynku));
 
-                    eventRejestrWejscWyjsc.ObiektGospodarczyID = int.Parse(eventRejestrWejscWyjsc.NazwaNumerBudynku);
+                    //eventRejestrWejscWyjsc.ObiektGospodarczyID = int.Parse(eventRejestrWejscWyjsc.NazwaNumerBudynku);
 
                     _context.Update(eventRejestrWejscWyjsc);
                 }

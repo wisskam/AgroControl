@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using AgroControl.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using DinkToPdf;
+using DinkToPdf.Contracts;
 
 namespace AgroControl
 {
@@ -35,8 +37,6 @@ namespace AgroControl
 
             services.AddControllers(config =>
             {
-                // using Microsoft.AspNetCore.Mvc.Authorization;
-                // using Microsoft.AspNetCore.Authorization;
                 var policy = new AuthorizationPolicyBuilder()
                                  .RequireAuthenticatedUser()
                                  .Build();
@@ -46,6 +46,7 @@ namespace AgroControl
             services.AddDbContext<GospodarstwoContext>(options =>
                     options.UseLazyLoadingProxies()
                            .UseNpgsql(Configuration.GetConnectionString("PSQLContext")));
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
             services.AddControllersWithViews();
 
