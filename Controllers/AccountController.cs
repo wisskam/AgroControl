@@ -36,13 +36,13 @@ namespace AgroControl.Controllers
             var result = await SignInMngr.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password, false, false);
             if (result.Succeeded)
             {
-                TempData["Message"] += "Login successful!";
+                TempData["Message"] += "Pomyślnie zalogowano!";
                 TempData["MessageType"] = "success";
                 return RedirectToAction("Index", "Gospodarstwo");
             }
             else
             {
-                ViewBag.Message += "Incorrect username or password";
+                ViewBag.Message += "Nieprawidłowa nazwa użytkownika lub hasło";
                 ViewBag.MessageType = "error";
                 
                 return View();
@@ -58,7 +58,7 @@ namespace AgroControl.Controllers
             {
                 await SignInMngr.SignOutAsync();
 
-                TempData["Message"] += "Logout successful!";
+                TempData["Message"] += "Pomyślnie wylogowano!";
                 TempData["MessageType"] = "success";
             }
             catch(Exception ex)
@@ -82,7 +82,7 @@ namespace AgroControl.Controllers
         {
             try
             {
-                TempData["Message"] = "User already registered";
+                TempData["Message"] = "Użytkownik już istnieje!";
                 TempData["MessageType"] = "error";
 
                 if (!ModelState.IsValid)
@@ -109,7 +109,7 @@ namespace AgroControl.Controllers
                 }
 
                 TempData["MessageType"] = "success";
-                TempData["Message"] = "User created!";
+                TempData["Message"] = "Stworzono użytkownika!";
             }
             catch(Exception ex)
             {

@@ -8,8 +8,11 @@
 
 @if (Model == null)
 {
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
+<div class="d-flex justify-content-center p-4 mt-3">
+    <input type="button" 
+           class="btn btn-success btn-lg" 
+           value="Stwórz nowe gospodarstwo" 
+           onclick="location.href='@Url.Action("Create", "Gospodarstwo")'" />
+</div>
 }
 

@@ -62,7 +62,13 @@ namespace AgroControl.Controllers
                 return View(baseEvents.OrderByDescending(x => x.CreatedDate).ToList().GetRange(start, amount));
             }
 
-            return View(baseEvents.OrderByDescending(x => x.CreatedDate).ToList().GetRange(0, 10));
+            int max = 10;
+
+            if(baseEvents.Count < 10) {
+                max = baseEvents.Count;
+            }
+
+            return View(baseEvents.OrderByDescending(x => x.CreatedDate).ToList().GetRange(0, max));
         }
 
         public IActionResult CreateEventRejestrTransportu()
