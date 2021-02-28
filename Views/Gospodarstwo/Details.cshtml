@@ -57,20 +57,21 @@
                     <div class="card col-11 col-xs-11 col-sm-5 col-lg-3 m-2" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">Obiekt: @obiektGospodarczy.Nazwa</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Opis obiektu gospodarczego </p>
+                            <h6 class="card-subtitle mb-2 text-muted">Obiekt gospodarczy</h6>
+                            <p class="card-text">Opcje</p>
                             <div class="row justify-content-between p-1">
-                                <span class="oi oi-cog ac-icon-primary px-2 pb-1"
-                                      data-toggle="tooltip" data-placement="top" title="Edytuj obiekt">
-                                </span>
+                                <a data-toggle="tooltip" data-placement="top" title="Edytuj obiekt" asp-action="Edit" asp-controller="ObiektGospodarczy" asp-route-id="@obiektGospodarczy.ID">
+                                    <span class="oi oi-cog ac-icon-primary px-2 pb-1"
+                                          data-toggle="tooltip" data-placement="top" title="Edytuj obiekt"/>
+                                </a>
                                 <a data-toggle="tooltip" data-placement="top" title="Dodaj zdarzenie">
-                                    <span class="oi oi-calendar ac-icon-primary px-2 pb-1" 
-                                          data-toggle="modal" data-target="#eventModal" data-id="@obiektGospodarczy.ID"/>
+                                    <span class="oi oi-calendar ac-icon-primary px-2 pb-1"
+                                          data-toggle="modal" data-target="#eventModal" data-id="@obiektGospodarczy.ID" />
                                 </a>
                                 <a data-toggle="tooltip" data-placement="top" title="Usuń obiekt">
-                                    <span class="oi oi-trash ac-icon-primary px-2 pb-1" 
-                                          data-toggle="modal" data-target="#deleteModal" data-id="@obiektGospodarczy.ID" 
-                                          data-action="ObiektGospodarczy/Delete/"/>
+                                    <span class="oi oi-trash ac-icon-primary px-2 pb-1"
+                                          data-toggle="modal" data-target="#deleteModal" data-id="@obiektGospodarczy.ID"
+                                          data-action="ObiektGospodarczy/Delete/" />
                                 </a>
                             </div>
                         </div>

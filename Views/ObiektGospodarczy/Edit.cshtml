@@ -1,28 +1,32 @@
-﻿@using Microsoft.AspNetCore.Identity
-@model AgroControl.Models.ObiektGospodarczy
+﻿@model AgroControl.Models.ObiektGospodarczy
+
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Stwórz nowy </h1>
+<h1>Edycja</h1>
 
 <h4>Obiekt Gospodarczy</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
             <div class="form-group">
                 <label asp-for="Nazwa" class="control-label"></label>
                 <input asp-for="Nazwa" class="form-control" />
                 <span asp-validation-for="Nazwa" class="text-danger"></span>
             </div>
+            <input type="hidden" asp-for="GospodarstwoID" />
             <div class="form-group">
-                <input type="submit" value="Stwórz" class="btn btn-primary" />
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+
 <div>
     <input type="button"
            class="btn btn-secondary"
@@ -30,6 +34,3 @@
            onclick="location.href='@Url.Action("Index", "Gospodarstwo")'" />
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

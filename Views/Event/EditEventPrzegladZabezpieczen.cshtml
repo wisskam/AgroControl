@@ -103,6 +103,9 @@
 </div>
 
 <div>
-    <a asp-action="Index">Powrót</a>
+    <input type="button"
+           class="btn btn-secondary"
+           value="Powrót"
+           onclick="location.href='@Url.Action("Index", "Event")'" />
 </div>
 

@@ -27,7 +27,10 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Usuń" class="btn btn-danger" /> |
+        <input type="button"
+               class="btn btn-secondary"
+               value="Powrót"
+               onclick="location.href='@Url.Action("Index", "Gospodarstwo")'" />
     </form>
 </div>

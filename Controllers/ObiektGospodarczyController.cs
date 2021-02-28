@@ -64,25 +64,37 @@ namespace AgroControl.Controllers
         }
 
         //// GET: ObiektGospodarczyController/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (id == 0)
+            {
+                return NotFound();
+            }
+
+            var obiektGospodarczy = await _context.ObiektyGospodarcze.FindAsync(id);
+            if (obiektGospodarczy == null)
+            {
+                return NotFound();
+            }
+            return View(obiektGospodarczy);
+        }
 
         //// POST: ObiektGospodarczyController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(ObiektGospodarczy obiektGospodarczy)
+        {
+            try
+            {
+                _context.Update(obiektGospodarczy);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Gospodarstwo");
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         // GET: ObiektGospodarczyController/Delete/5
         public async Task<IActionResult> Delete(int id)
