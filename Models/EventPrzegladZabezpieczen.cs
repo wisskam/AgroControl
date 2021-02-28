@@ -8,7 +8,8 @@ namespace AgroControl.Models
 {
     public class EventPrzegladZabezpieczen : EventModelBase
     {
-        public DateTime DataPrzegladu { get; set; } = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+        //public DateTime DataPrzegladu { get; set; } = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+        public DateTime DataPrzegladu { get; set; } = DateTime.Now;
 
         // Ogólna szczelność budynku
         [Required]

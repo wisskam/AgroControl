@@ -8,7 +8,8 @@ namespace AgroControl.Models
 {
     public class EventSpisZwierzat : EventModelBase
     {
-        public DateTime DataSpisu { get; set; } = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+        //public DateTime DataSpisu { get; set; } = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+        public DateTime DataSpisu { get; set; } = DateTime.Now;
 
         [Display(Name = "Liczba prosiąt (od urodzenia do osadzenia)")]
         public int LiczbaProsiat { get; set; } = 0;

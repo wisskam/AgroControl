@@ -8,7 +8,8 @@ namespace AgroControl.Models
 {
     public class EventDezynfekcja : EventModelBase
     {
-        public DateTime DataZabiegu { get; set; } = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+        //public DateTime DataZabiegu { get; set; } = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+        public DateTime DataZabiegu { get; set; } = DateTime.Now;
 
         [Display(Name = "Obiekt Gospodarczy")]
         public int ObiektGospodarczyID { get; set; }

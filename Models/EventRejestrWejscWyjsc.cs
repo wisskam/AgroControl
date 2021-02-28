@@ -11,7 +11,8 @@ namespace AgroControl.Models
     {
         [Required(ErrorMessage = "Data i godzina wejścia jest wymagana")]
         [Display(Name = "Data i godzina wejścia")]
-        public DateTime DataIGodzinaWejścia { get; set; } = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+        //public DateTime DataIGodzinaWejścia { get; set; } = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+        public DateTime DataIGodzinaWejścia { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "Imię i nazwisko osoby wchodzącej do budynku jest wymagane")]
         [Display(Name = "Imię i nazwisko osoby wchodzącej do budynku")]
@@ -27,7 +28,8 @@ namespace AgroControl.Models
 
         [Required(ErrorMessage = "Data ostatniego pobytu w innym gospodarstwie jest wymagana")]
         [Display(Name = "Data ostatniego pobytu w innym gospodarstwie")]
-        public DateTime DataOstatniegoPobytu { get; set; } = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+        //public DateTime DataOstatniegoPobytu { get; set; } = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+        public DateTime DataOstatniegoPobytu { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "Miejsce ostatniego pobytu w innym gospodarstwie jest wymagane")]
         [Display(Name = "Miejsce ostatniego pobytu w innym gospodarstwie")]
